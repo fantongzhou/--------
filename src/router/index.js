@@ -1,0 +1,110 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+Vue.use(Router)
+//json格式数据
+let menu=[
+  {
+    path:'/user',
+    name:'layoutYHGL',
+    component:()=>import('@/views/layout/Layout'),
+    meta:{
+      title:'用户管理',
+      icon:'el-icon-user',
+      menu:true,
+      funcNode:'1'
+    },
+    children:[
+      {
+        path:'/user/userList',
+        name:'UserList',
+        component:()=>import('@/views/user/UserList'),
+        meta:{
+          title:'用户列表',
+          icon:'el-icon-notebook-2',
+          menu:true,
+          funcNode:'1-1'
+        }
+      },
+    ]
+  },
+  {
+    path:'/sys',
+    name:'layoutXTGL',
+    component:()=>import('@/views/layout/Layout'),
+    meta:{
+      title:'系统管理',
+      icon:'el-icon-setting',
+      menu:true,
+      funcNode:'2'
+    },
+    children:[
+      {
+        path:'/sys/sysLogList',
+        name:'SysLogList',
+        component:()=>import('@/views/sys/SysLogList'),
+        meta:{
+          title:'系统访问日志',
+          icon:'el-icon-notebook-1',
+          menu:true,
+          funcNode:'2-1'
+        }
+      },
+      {
+        path:'/sys/songList',
+        name:'SongList',
+        component:()=>import('@/views/sys/SongList'),
+        meta:{
+          title:'歌曲库',
+          icon:'el-icon-notebook-1',
+          menu:true,
+          funcNode:'2-2'
+        }
+      },
+      {
+        path:'/sys/singerList',
+        name:'SingerList',
+        component:()=>import('@/views/sys/SingerList'),
+        meta:{
+          title:'歌手列表',
+          icon:'el-icon-notebook-1',
+          menu:true,
+          funcNode:'2-3'
+        }
+      },
+      {
+        path:'/sys/lists',
+        name:'Lists',
+        component:()=>import('@/views/sys/Lists'),
+        meta:{
+          title:'歌单',
+          icon:'el-icon-notebook-1',
+          menu:true,
+          funcNode:'2-4'
+        }
+      }
+    ]
+  },
+  {
+    path:'',
+    redirect:'login',
+    meta:{
+      menu:false
+    }
+  },
+  {
+    path:'/login',
+    name:'Login',
+    component:()=>import('@/views/login/Login'),
+    meta:{
+      menu:false
+    }
+  }
+]
+
+export default new Router({
+  routes:menu,
+})
